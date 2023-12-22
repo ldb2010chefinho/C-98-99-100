@@ -16,6 +16,14 @@ Webcam.set({
     jpeg_quality:90
 });
 
+recognition.onresult = function (event) {
+    console.log(event);
+    Content = event.result[0][0].transcript;
+    if (Content == "Selfie.") {
+        speak()
+    }
+}
+
 var imgId
 
 function speak(){
@@ -50,14 +58,6 @@ function speak(){
     },15000);
 
 };
-
-camera = document.getElementById("camera");
-Webcam.set({
-    width:500,
-    height:400,
-    image_format:"png",
-    png_quality:90
-});
 
 function takeSelf() {
     Webcam.snap(function (data_uri) {
